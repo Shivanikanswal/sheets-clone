@@ -3,7 +3,8 @@ let col = 26;
 
 let addressColRows = document.querySelector(".address-col-cont");
 let addressRowCols = document.querySelector(".address-row-cont");
-let cellsRowCont = document.querySelector(".cells-cont");
+let cellsCont = document.querySelector(".cells-cont");
+let addressBar = document.querySelector(".address-bar");
 
 for (let i = 0; i < row; i++) {
   let addressColCells = document.createElement("div");
@@ -24,9 +25,18 @@ for (let i = 0; i < row; i++) {
   cellRow.setAttribute("class", "cell-row");
   for (let j = 0; j < col; j++) {
     let cellBox = document.createElement("div");
-    cellBox.contentEditable = "true";
     cellBox.setAttribute("class", "cell-box");
+    cellBox.setAttribute("contenteditable", "true");
     cellRow.appendChild(cellBox);
+    addEventAddressBar(cellBox, i, j);
   }
-  cellsRowCont.appendChild(cellRow);
+  cellsCont.appendChild(cellRow);
+}
+
+function addEventAddressBar(cellBox, i, j) {
+  cellBox.addEventListener("click", (e) => {
+    let rowID = i + 1;
+    let colID = String.fromCharCode(65 + j);
+    addressBar.value = `${colID}${rowID}`;
+  });
 }
