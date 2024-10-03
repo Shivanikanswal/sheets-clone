@@ -8,7 +8,7 @@ for (let i = 0; i < row; i++) {
       italic: false,
       underline: false,
       alignment: "left",
-      fontFamily: "monospace",
+      fontFamily: "Monospace",
       fontSize: "14",
       fontColor: "#000000",
       bgColor: "#000000",
@@ -110,6 +110,64 @@ alignment.forEach((alignElem) => {
     }
   });
 });
+
+let allCells = document.querySelectorAll(".cell-box");
+for (let i = 0; i < allCells.length; i++) {
+  addListenerToAttachCellProperties(allCells[i]);
+}
+
+function addListenerToAttachCellProperties(cell) {
+  cell.addEventListener("click", (e) => {
+    let address = addressBar.value;
+    let [rId, cId] = decodeIdsfromAddress(address);
+    let cellProp = sheetDB[rId][cId];
+
+    // Apply cell Properties
+    cell.style.fontWeight = cellProp.bold ? "bold" : "normal";
+    cell.style.fontStyle = cellProp.italic ? "italic" : "normal";
+    cell.style.textDecoration = cellProp.underline ? "underline" : "none";
+    cell.style.fontSize = cellProp.fontSize + "px";
+    cell.style.fontFamily = cellProp.fontFamily;
+    cell.style.color = cellProp.fontColor;
+    cell.style.backgroundColor =
+      cellProp.bgColor === "#000000" ? "transparent" : cellProp.bgColor;
+    cell.style.textAlign = cellProp.alignment;
+
+    // console.log(cellProp.fontFamily);
+
+    // Apply properties UI Props container
+    bold.style.backgroundColor = cellProp.bold ? activeColor : nonActiveColor;
+    italic.style.backgroundColor = cellProp.italic
+      ? activeColor
+      : nonActiveColor;
+    underline.style.backgroundColor = cellProp.underline
+      ? activeColor
+      : nonActiveColor;
+    fontColor.value = cellProp.fontColor;
+    bgColor.value = cellProp.bgColor;
+    fontSize.value = cellProp.fontSize;
+    fontFamily.value = cellProp.fontFamily; //UI change 2 in props
+    switch (
+      cellProp.alignment // UI change (2)
+    ) {
+      case "left":
+        leftAlign.style.backgroundColor = activeColor;
+        centreAlign.style.backgroundColor = nonActiveColor;
+        rightAlign.style.backgroundColor = nonActiveColor;
+        break;
+      case "center":
+        leftAlign.style.backgroundColor = nonActiveColor;
+        centreAlign.style.backgroundColor = activeColor;
+        rightAlign.style.backgroundColor = nonActiveColor;
+        break;
+      case "right":
+        leftAlign.style.backgroundColor = nonActiveColor;
+        centreAlign.style.backgroundColor = nonActiveColor;
+        rightAlign.style.backgroundColor = activeColor;
+        break;
+    }
+  });
+}
 
 const getActiveCell = (addressBar) => {
   let [rId, cId] = decodeIdsfromAddress(addressBar);
