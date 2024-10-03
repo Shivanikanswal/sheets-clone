@@ -107,7 +107,7 @@ body {
 .top-left-dummy-box {
   height: 2rem;
   width: 2rem;
-  background-color: #218c74;
+  background-color: #b8c2cc;
   position: fixed;
   z-index: 5;
 }
@@ -155,4 +155,16 @@ body {
   border: 1px solid #dfe4ea;
   z-index: 3;
   outline: none;
+}
+.color-plt-parent {
+  position: relative;
+}
+.bgColor,
+.fontColor {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }

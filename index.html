@@ -36,15 +36,25 @@
         <option>18</option>
         <option>20</option>
       </select>
-      <span class="material-icons"> format_italic </span>
-      <span class="material-icons"> format_bold </span>
-      <span class="material-icons"> format_underlined </span>
-      <span class="material-icons"> format_align_left </span>
-      <span class="material-icons"> format_align_center </span>
-      <span class="material-icons"> format_align_right </span>
-      <span class="material-icons"> format_color_fill </span>
-      <span class="material-icons"> format_color_text </span>
-      <input type="color" name="clr" id="clrid" />
+      <span class="material-icons bold"> format_bold </span>
+      <span class="material-icons italic"> format_italic </span>
+      <span class="material-icons underline"> format_underlined </span>
+      <span class="left material-icons alignment"> format_align_left </span>
+      <span class="center material-icons alignment"> format_align_center </span>
+      <span class="right material-icons alignment"> format_align_right </span>
+      <div class="color-plt-parent">
+        <span class="material-icons"> format_color_text </span>
+        <input
+          type="color"
+          class="fontColor"
+          name="text-color"
+          id="text-color"
+        />
+      </div>
+      <div class="color-plt-parent">
+        <span class="material-icons"> format_color_fill </span>
+        <input type="color" class="bgColor" name="fill-color" id="fill-color" />
+      </div>
     </div>
     <div class="formula-actions-cont">
       <input type="text" class="address-bar" />
@@ -74,5 +84,6 @@
       </div>
     </div>
   </body>
-  <script src="script.js"></script>
+  <script src="grid.js"></script>
+  <script src="cell-properties.js"></script>
 </html>

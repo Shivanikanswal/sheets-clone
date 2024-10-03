@@ -27,6 +27,9 @@ for (let i = 0; i < row; i++) {
     let cellBox = document.createElement("div");
     cellBox.setAttribute("class", "cell-box");
     cellBox.setAttribute("contenteditable", "true");
+    cellBox.setAttribute("spellcheck", "false");
+    cellBox.setAttribute("rid", i);
+    cellBox.setAttribute("cid", j);
     cellRow.appendChild(cellBox);
     addEventAddressBar(cellBox, i, j);
   }
