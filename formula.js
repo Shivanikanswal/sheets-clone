@@ -11,6 +11,30 @@ for (let i = 0; i < row; i++) {
   }
 }
 
+//on enter on formulabar evaluate the result
+let formulabar = document.querySelector(".formula-bar");
+
+formulabar.addEventListener("keydown", (e) => {
+  let formulaVal = formulabar.value;
+  // console.log(formulaVal);
+  if (e.key === "Enter" && formulaVal) {
+    let evalVal = evaluateValue(formulaVal);
+    // console.log(evalVal);
+    setCellandCellProp(evalVal, formulaVal);
+  }
+});
+
 //function for formula storing in db
 
 //function to evaulate the formula
+function evaluateValue(formulaVal) {
+  return eval(formulaVal);
+}
+
+function setCellandCellProp(evalVal, formulaVal) {
+  let address = addressBar.value;
+  let [cell, cellProp] = getActiveCell(address);
+  cell.innerText = evalVal;
+  cellProp.value = evalVal;
+  cellProp.formula = formulaVal;
+}
